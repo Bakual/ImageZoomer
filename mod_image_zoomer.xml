@@ -12,7 +12,6 @@
 	<files folder="module">
 		<filename module="mod_image_zoomer">mod_image_zoomer.php</filename>
 		<filename>index.html</filename>
-		<folder>images</folder>
 		<folder>language</folder>
 		<folder>tmpl</folder>
 	</files>
@@ -22,107 +21,381 @@
 		<folder>js</folder>
 	</media>
 	<config>
-		<fields name="fields">
+		<fields name="params">
 			<fieldset name="basic">
-				<field name="@spacer" type="spacer" default="&lt;h1&gt;Layout&lt;/h1&gt;" label="" description="Images" />
-				<field name="@spacer" type="spacer" default="&lt;h4&gt;Zoom window&lt;/h4&gt;" label="" description="Zoom window" />
-				<field name="zoomType" type="radio" default="standard" label="Zoom Type" description="Choose one...">
-				  <option value="standard">standard</option>
-				  <option value="reverse">reverse</option>
-				  <option value="drag">drag</option>
-				  <option value="innerzoom">innerzoom</option>
+				<field
+					name="spacer1"
+					type="spacer"
+					label="Zoom window"
+				/>
+				<field
+					name="zoomType"
+					type="radio"
+					label="Zoom Type"
+					description="Choose one..."
+					class="btn-group"
+					default="standard"
+					>
+					<option value="standard">standard</option>
+					<option value="reverse">reverse</option>
+					<option value="drag">drag</option>
+					<option value="innerzoom">innerzoom</option>
 				</field>
-				<field name="zoomWidth" type="text" size="7" default="200" label="Popup width in px" description="The popup window width showing the zoomed area." />
-				<field name="zoomHeight" type="text" size="7" default="200" label="Popup height in px" description="The popup window height showing the zoomed area." />
-				<field name="xOffset" type="text" size="10" default="5" label="xOffset in px" description="The popup window x offset from the small image." />
-				<field name="yOffset" type="text" size="10" default="0" label="yOffset in px" description="The popup window y offset from the small image." />
-				<field name="position" type="radio" default="right" label="position" description="The popup window position.">
-				  <option value="right">right</option>
-				  <option value="left">left</option>
-				  <option value="top">top</option>
-				  <option value="bottom">bottom</option>
+				<field
+					name="zoomWidth"
+					type="number"
+					label="Popup width in px"
+					description="The popup window width showing the zoomed area."
+					default="200"
+				/>
+				<field
+					name="zoomHeight"
+					type="number"
+					label="Popup height in px"
+					description="The popup window height showing the zoomed area."
+					default="200"
+				/>
+				<field
+					name="xOffset"
+					type="number"
+					label="xOffset in px"
+					description="The popup window x offset from the small image."
+					default="5"
+				/>
+				<field
+					name="yOffset"
+					type="number"
+					label="yOffset in px"
+					description="The popup window y offset from the small image."
+					default="0"
+				/>
+				<field
+					name="position"
+					type="radio"
+					label="position"
+					description="The popup window position."
+					class="btn-group"
+					default="right"
+					>
+					<option value="right">right</option>
+					<option value="left">left</option>
+					<option value="top">top</option>
+					<option value="bottom">bottom</option>
 				</field>
-				<field name="preloadImages" type="radio" default="1" label="Preload large Images" description="Do you want to preload the large images?">
-				  <option value="1">yes</option>
-				  <option value="0">no</option>
+				<field
+					name="preloadImages"
+					type="radio"
+					label="Preload large Images"
+					description="Do you want to preload the large images?"
+					class="btn-group btn-group-yesno"
+					default="1"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
 				</field>
-				<field name="preloadText" type="text" size="30" default="Loading..." label="Preloader Text" description="The text to show while preloading images." />
-				
-				<field name="showTitle" type="radio" default="1" label="Show Image Title?" description="Show a small title over the zoomed window.">
-				  <option value="1">yes</option>
-				  <option value="0">no</option>
+				<field
+					name="preloadText"
+					type="text"
+					label="Preloader Text"
+					description="The text to show while preloading images."
+					default="Loading..."
+				/>
+				<field
+					name="showTitle"
+					type="radio"
+					label="Show Image Title?"
+					description="Show a small title over the zoomed window."
+					class="btn-group btn-group-yesno"
+					default="1"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
 				</field>
-				<field name="showLens" type="radio" default="0" label="Show Lens?" description="if set to false,the small lens,over the image, won't show.">
-				  <option value="1">yes</option>
-				  <option value="0">no</option>
+				<field
+					name="showLens"
+					type="radio"
+					label="Show Lens?"
+					description="if set to false,the small lens,over the image, won't show."
+					class="btn-group btn-group-yesno"
+					default="0"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
 				</field>
-				<field name="imageOpacity" type="text" size="5" default="0.6" label="Image opacity if reverse" description="Set the image opacity when the 'zoomType' option is set to 'reverse'." />
-				<field name="alwaysOn" type="radio" default="0" label="Zoom window always ON?" description="Should the zoom window always be visible?">
-				  <option value="1">yes</option>
-				  <option value="0">no</option>
+				<field
+					name="imageOpacity"
+					type="range"
+					label="Image opacity if reverse"
+					description="Set the image opacity when the 'zoomType' option is set to 'reverse'."
+					min="0"
+					max="1"
+					step="0.1"
+					default="0.6"
+				/>
+				<field
+					name="alwaysOn"
+					type="radio"
+					label="Zoom window always ON?"
+					description="Should the zoom window always be visible?"
+					class="btn-group btn-group-yesno"
+					default="0"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
 				</field>
-						<field name="@spacer" type="spacer" default="" label="" description="" />
-				<field name="@spacer" type="spacer" default="&lt;h1&gt;Images&lt;/h1&gt;" label="" description="Images" />
-				<field name="zoomnumber" type="list" default="1" label="Number of Images" description="How many images do you want to zoom? Select and enter the images below.">
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="4">4</option>
-				  <option value="5">5</option>
-				  <option value="6">6</option>
-				  <option value="7">7</option>
-				  <option value="8">8</option>
-				  <option value="9">9</option>
-				  <option value="10">10</option>
-				</field>
-				<field name="@spacer" type="spacer" default="&lt;h4&gt;SMALL Images | LARGE Images | Image Titles&lt;/h4&gt;" label="" description="SMALL and LARGE Images" />
-				<field name="small_image1" type="text" size="70" default="modules/mod_lv_image_zoomer_2/demo/small.jpg" label="Small Image 1" description="SMALL image: Example: http://your-image.com/SMALL.jpg" />
-				<field name="large_image1" type="text" size="70" default="modules/mod_lv_image_zoomer_2/demo/large.jpg" label="Large Image 1" description="LARGE image: Example: http://your-image.com/LARGE.jpg"  />
-				<field name="linkTitle1" type="text" size="70" default="You see: Image 1" label="Image title 1" description="Enter a title that will be shown in the small zoom window, if th option is enabled." />
-						<field name="@spacer" type="spacer" default="" label="" description="" />
-				<field name="small_image2" type="text" size="70" default="" label="Small Image 2" description="SMALL image: Example: http://your-image.com/SMALL.jpg" />
-				<field name="large_image2" type="text" size="70" default="" label="Large Image 2" description="LARGE image: Example: http://your-image.com/LARGE.jpg"  />
-				<field name="linkTitle2" type="text" size="70" default="" label="Image title 2" description="Enter a title that will be shown in the small zoom window, if th option is enabled." />
-						<field name="@spacer" type="spacer" default="" label="" description="" />
-				<field name="small_image3" type="text" size="70" default="" label="Small Image 3" description="SMALL image: Example: http://your-image.com/SMALL.jpg" />
-				<field name="large_image3" type="text" size="70" default="" label="Large Image 3" description="LARGE image: Example: http://your-image.com/LARGE.jpg"  />
-				<field name="linkTitle3" type="text" size="70" default="" label="Image title 3" description="Enter a title that will be shown in the small zoom window, if th option is enabled." />
-						<field name="@spacer" type="spacer" default="" label="" description="" />
-				<field name="small_image4" type="text" size="70" default="" label="Small Image 4" description="SMALL image: Example: http://your-image.com/SMALL.jpg" />
-				<field name="large_image4" type="text" size="70" default="" label="Large Image 4" description="LARGE image: Example: http://your-image.com/LARGE.jpg"  />
-				<field name="linkTitle4" type="text" size="70" default="" label="Image title 4" description="Enter a title that will be shown in the small zoom window, if th option is enabled." />
-						<field name="@spacer" type="spacer" default="" label="" description="" />
-				<field name="small_image5" type="text" size="70" default="" label="Small Image 5" description="SMALL image: Example: http://your-image.com/SMALL.jpg" />
-				<field name="large_image5" type="text" size="70" default="" label="Large Image 5" description="LARGE image: Example: http://your-image.com/LARGE.jpg"  />
-				<field name="linkTitle5" type="text" size="70" default="" label="Image title 5" description="Enter a title that will be shown in the small zoom window, if th option is enabled." />
-						<field name="@spacer" type="spacer" default="" label="" description="" />
-				<field name="small_image6" type="text" size="70" default="" label="Small Image 6" description="SMALL image: Example: http://your-image.com/SMALL.jpg" />
-				<field name="large_image6" type="text" size="70" default="" label="Large Image 6" description="LARGE image: Example: http://your-image.com/LARGE.jpg"  />
-				<field name="linkTitle6" type="text" size="70" default="" label="Image title 6" description="Enter a title that will be shown in the small zoom window, if th option is enabled." />
-						<field name="@spacer" type="spacer" default="" label="" description="" />
-				<field name="small_image7" type="text" size="70" default="" label="Small Image 7" description="SMALL image: Example: http://your-image.com/SMALL.jpg" />
-				<field name="large_image7" type="text" size="70" default="" label="Large Image 7" description="LARGE image: Example: http://your-image.com/LARGE.jpg"  />
-				<field name="linkTitle7" type="text" size="70" default="" label="Image title 7" description="Enter a title that will be shown in the small zoom window, if th option is enabled." />
-						<field name="@spacer" type="spacer" default="" label="" description="" />
-				<field name="small_image8" type="text" size="70" default="" label="Small Image 8" description="SMALL image: Example: http://your-image.com/SMALL.jpg" />
-				<field name="large_image8" type="text" size="70" default="" label="Large Image 8" description="LARGE image: Example: http://your-image.com/LARGE.jpg"  />
-				<field name="linkTitle8" type="text" size="70" default="" label="Image title 8" description="Enter a title that will be shown in the small zoom window, if th option is enabled." />
-						<field name="@spacer" type="spacer" default="" label="" description="" />
-				<field name="small_image9" type="text" size="70" default="" label="Small Image 9" description="SMALL image: Example: http://your-image.com/SMALL.jpg" />
-				<field name="large_image9" type="text" size="70" default="" label="Large Image 9" description="LARGE image: Example: http://your-image.com/LARGE.jpg"  />
-				<field name="linkTitle9" type="text" size="70" default="" label="Image title 9" description="Enter a title that will be shown in the small zoom window, if th option is enabled." />
-						<field name="@spacer" type="spacer" default="" label="" description="" />
-				<field name="small_image10" type="text" size="70" default="" label="Small Image 10" description="SMALL image: Example: http://your-image.com/SMALL.jpg" />
-				<field name="large_image10" type="text" size="70" default="" label="Large Image 10" description="LARGE image: Example: http://your-image.com/LARGE.jpg"  />
-				<field name="linkTitle10" type="text" size="70" default="" label="Image title 10" description="Enter a title that will be shown in the small zoom window, if th option is enabled." />
-						<field name="@spacer" type="spacer" default="" label="" description="" />
-				<field name="@spacer" type="spacer" default="&lt;h1&gt;Other&lt;/h1&gt;" label="" description="Images" />
+				<field
+					name="space2"
+					type="spacer"
+					label="Images"
+				/>
+				<field
+					name="zoomnumber"
+					type="number"
+					label="Number of Images"
+					description="How many images do you want to zoom?"
+					min="1"
+					max="10"
+					default="1"
+				/>
+				<field
+					name="spacer4"
+					type="spacer"
+					label="Other"
+				/>
 				<field name="zoomer_id" type="text" size="20" default="3" label="Unique Module ID" description="Use this if you have more LV Imege Zoomers active and give them all an other ID" />
-				<field name="loadJquery" type="radio" default="1" label="Load jquery.js" description="This options loads jquery and starts the no colnflict mode (important to use mootools things too). Leave this unchanged if you dont know what is meaned.">
-				  <option value="1">YES</option>
-				  <option value="2">NO</option>
-				</field>
-				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="fieldMODULECLASSSUFFIX" />
+			</fieldset>
+			<fieldset
+				name="images"
+				label="SMALL and LARGE Images"
+				description="SMALL Images | LARGE Images | Image Titles"
+				>
+				<field
+					name="small_image1"
+					type="text"
+					label="Small Image 1"
+					description="SMALL image: Example: images/small.jpg"
+					class="input-xlarge"
+					default="images/small.jpg"
+				/>
+				<field
+					name="large_image1"
+					type="text"
+					label="Large Image 1"
+					description="LARGE image: Example: images/large.jpg"
+					class="input-xlarge"
+					default="images/large.jpg"
+				/>
+				<field
+					name="linkTitle1"
+					type="text"
+					label="Image title 1"
+					description="Enter a title that will be shown in the small zoom window, if the option is enabled."
+					class="input-large"
+					default="Demo Title"
+				/>
+				<field
+					name="small_image2"
+					type="text"
+					label="Small Image 2"
+					description="SMALL image: Example: images/small.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="large_image2"
+					type="text"
+					label="Large Image 2"
+					description="LARGE image: Example: images/large.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="linkTitle2"
+					type="text"
+					label="Image title 2"
+					description="Enter a title that will be shown in the small zoom window, if the option is enabled."
+					class="input-large"
+				/>
+				<field
+					name="small_image3"
+					type="text"
+					label="Small Image 3"
+					description="SMALL image: Example: images/small.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="large_image3"
+					type="text"
+					label="Large Image 3"
+					description="LARGE image: Example: images/large.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="linkTitle3"
+					type="text"
+					label="Image title 3"
+					description="Enter a title that will be shown in the small zoom window, if the option is enabled."
+					class="input-large"
+				/>
+				<field
+					name="small_image4"
+					type="text"
+					label="Small Image 4"
+					description="SMALL image: Example: images/small.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="large_image4"
+					type="text"
+					label="Large Image 4"
+					description="LARGE image: Example: images/large.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="linkTitle4"
+					type="text"
+					label="Image title 4"
+					description="Enter a title that will be shown in the small zoom window, if the option is enabled."
+					class="input-large"
+				/>
+				<field
+					name="small_image5"
+					type="text"
+					label="Small Image 5"
+					description="SMALL image: Example: images/small.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="large_image5"
+					type="text"
+					label="Large Image 5"
+					description="LARGE image: Example: images/large.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="linkTitle5"
+					type="text"
+					label="Image title 5"
+					description="Enter a title that will be shown in the small zoom window, if the option is enabled."
+					class="input-large"
+				/>
+				<field
+					name="small_image6"
+					type="text"
+					label="Small Image 6"
+					description="SMALL image: Example: images/small.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="large_image6"
+					type="text"
+					label="Large Image 6"
+					description="LARGE image: Example: images/large.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="linkTitle6"
+					type="text"
+					label="Image title 6"
+					description="Enter a title that will be shown in the small zoom window, if the option is enabled."
+					class="input-large"
+				/>
+				<field
+					name="small_image7"
+					type="text"
+					label="Small Image 7"
+					description="SMALL image: Example: images/small.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="large_image7"
+					type="text"
+					label="Large Image 7"
+					description="LARGE image: Example: images/large.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="linkTitle7"
+					type="text"
+					label="Image title 7"
+					description="Enter a title that will be shown in the small zoom window, if the option is enabled."
+					class="input-large"
+				/>
+				<field
+					name="small_image8"
+					type="text"
+					label="Small Image 8"
+					description="SMALL image: Example: images/small.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="large_image8"
+					type="text"
+					label="Large Image 8"
+					description="LARGE image: Example: images/large.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="linkTitle8"
+					type="text"
+					label="Image title 8"
+					description="Enter a title that will be shown in the small zoom window, if the option is enabled."
+					class="input-large"
+				/>
+				<field
+					name="small_image9"
+					type="text"
+					label="Small Image 9"
+					description="SMALL image: Example: images/small.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="large_image9"
+					type="text"
+					label="Large Image 9"
+					description="LARGE image: Example: images/large.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="linkTitle9"
+					type="text"
+					label="Image title 9"
+					description="Enter a title that will be shown in the small zoom window, if the option is enabled."
+					class="input-large"
+				/>
+				<field
+					name="small_image10"
+					type="text"
+					label="Small Image 10"
+					description="SMALL image: Example: images/small.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="large_image10"
+					type="text"
+					label="Large Image 10"
+					description="LARGE image: Example: images/large.jpg"
+					class="input-xlarge"
+				/>
+				<field
+					name="linkTitle10"
+					type="text"
+					label="Image title 10"
+					description="Enter a title that will be shown in the small zoom window, if the option is enabled."
+					class="input-large"
+				/>
+			</fieldset>
+			<fieldset name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC"
+				/>
+				<field
+					name="moduleclass_sfx"
+					type="textarea" rows="3"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+				/>
 			</fieldset>
 		</fields>
 	</config>
